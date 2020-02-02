@@ -7,24 +7,23 @@
             <div class="form-group">
                 <label class='label'  >UserName</label>
                 <input  class=" input" formControlName="UserName">
-                <div class="smalltext" *ngIf="service.loginModel.get('UserName').touched && service.loginModel.get('UserName').errors?.required" >UserName Required</div>
-                <div class="sm  alltext" *ngIf="service.loginModel.get('UserName').touched && service.loginModel.get('UserName').errors?.minLength">Enter Valid UserName</div>
+                <div class="smalltext" *ngIf="service.registerModel.get('UserName').touched && service.registerModel.get('UserName').errors?.required" >UserName Required</div>
+                <div class="sm  alltext" *ngIf="service.registerModel.get('UserName').touched && service.registerModel.get('UserName').errors?.minLength">UserName must be at least of 4 characters</div>
             </div>
             <div  formGroupName="Passwords">
             <div class="form-group">
                 <label class='label' >Password</label>
                 <input type="password"  class=" input" formControlName="Password">
-                <div  class="smalltext" *ngIf="service.loginModel.get('Passwords.Password').touched && service.loginModel.get('Passwords.Password').errors?.required" >Password Required</div>
-                <div  class="smalltext" *ngIf="service.loginModel.get('Passwords.Password').touched && service.loginModel.get('Passwords.Password').errors?.minLength" >Password Required</div>
+                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.required" >Password Required</div>
+                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.minLength" >Must be at least 8 words including numbers,capital letter and special characters.</div>
             </div>
             <div class="form-group">
                 <label class='label' >ReType Password</label>
                 <input type="password"  class=" input" formControlName="ConfirmPassword">
-                <div  class="smalltext" *ngIf="service.loginModel.get('Passwords.ConfirmPassword').touched && service.loginModel.get('Passwords.ConfirmPassword').errors?.required" >Password Required</div>
-                <div  class="smalltext" *ngIf="service.loginModel.get('Passwords.ConfirmPassword').touched && service.loginModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch" >Password Required</div>
+                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.ConfirmPassword').touched && service.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch" >Two Passwords do not match.</div>
             </div>
             </div>
-            <button type="submit" class="signupbtn" [disabled]="!service.loginModel.valid"  >Login</button>
+            <button type="submit" class="signupbtn"   >Login</button>
         </form>
         </div>
     </div>

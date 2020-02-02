@@ -13,9 +13,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(
     
   ) {
-    this.service.registerModel.reset();
+    this.service.registerModel.value.UserName="BasuDev";
+    this.service.registerModel.value.Password="BasuDev@123";
+    this.service.registerModel.value.ConfirmPassword="BasuDev@123";
   }
   submit(){
+    console.log(this.service.registerModel);
     this.service.register().subscribe(
       (result:any)=>console.log(result),
       error=>console.log(error)

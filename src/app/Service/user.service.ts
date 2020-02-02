@@ -1,6 +1,6 @@
 import { catchError, map, tap } from 'rxjs/operators';
 import { FormBuilder,Validators, FormGroup,FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Injectable } from "@angular/core";
 import { Global } from '../global/serverlinks';
@@ -16,11 +16,11 @@ export class UserService{
     Observable: any;
   constructor(public fb:FormBuilder,public http:HttpClient){}
     public registerModel=this.fb.group({
-        UserName:['',[Validators.required,Validators.minLength(4)]],
+        UserName:['BasuDev',[Validators.required,Validators.minLength(4)]],
         Passwords:this.fb.group({
-            Password:['',[Validators.required,Validators.minLength(8),
+            Password:['BasuDev@123',[Validators.required,Validators.minLength(8),
                         Validators.maxLength(16)]],
-            ConfirmPassword:['',[Validators.required,Validators.minLength(8),
+            ConfirmPassword:['BasuDev@123',[Validators.required,Validators.minLength(8),
                 Validators.maxLength(16)]]
         
         },{validator:this.passwordMismatch})
@@ -68,7 +68,7 @@ export class UserService{
         
         )
     }
-    public handleError(error){
-       return this.Observable.throw(error);
+    public handleError(error:HttpErrorResponse){
+       return Observable.throw(error.message || 'server error');
     }
 }

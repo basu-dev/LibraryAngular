@@ -1,0 +1,45 @@
+<button class="btn btn-primary" (click)="showResult()">Click</button> 
+<div *ngFor="let role of data">
+
+<div class="card mb-2 border-dark">
+    <div class="card-header">
+        {{role.name}}
+    </div>
+    <div class="card-body pl-3">
+        This is {{role.name}} role.
+    </div>
+    <div class="card-footer">
+        <div class="btn-group">
+            <a >
+                <button class="btn-primary" routerLink="/editrole/{{role.id}}" (click)="EditRole(role.id)">Edit</button>
+            </a>
+            <a >
+                <button class="btn-danger">Delete</button>
+            </a>
+        </div>
+    </div>
+  
+        <div class="card">
+            <div class="card-header">Users</div>
+            <div class="card-body list-group pl-3">
+               
+                    <div *ngIf="role.users!=null" else #elseBlock>
+                    <div *ngFor="let user of role.users">
+                        <div class="font-weight-bold">{{user.name}}</div>
+                    </div>
+
+            </div>
+                </div>
+                <div #elseBlock>
+                    <div class="font-weight-bold">No Members Yet</div>
+
+                </div>
+                <a >
+                    <button class="btn btn-outline-dark">Manage Users In{{role.name}} role</button>
+                </a>    
+                </div>
+            
+        </div>
+
+   
+</div>

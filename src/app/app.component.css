@@ -1,0 +1,108 @@
+mat-sidenav{
+    background-color:orangered;
+    height:100vh;
+    overflow-y:scroll;
+    width:200px;
+
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: orangered; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(192, 54, 3); 
+  }
+mat-sidenav-content{
+    background-color:white;
+    height:100vh;
+
+}
+.mynav{
+    background-color:orangered;
+    justify-content: space-between;
+    height: 45px;
+    position: sticky;
+    top:0;
+    left:0;
+    z-index:10;
+
+}
+span{
+    padding:1rem;
+    cursor: pointer;
+    color:white;
+    font-size: 1.2rem;
+}
+.burger-wrapper {
+    cursor: pointer;
+    margin: auto;
+    width: 35px;
+    height: 20px;
+    margin:0;
+    margin-top:-25px;
+  }
+  .burger-wrapper .hamburger {
+    background: white;
+    width: 30px;
+    height: 4px;
+    margin-left:0;
+    position: relative;
+    -webkit-transition: background 10ms 300ms ease;
+    transition: background 10ms 300ms ease;
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  .burger-wrapper .hamburger:before, .burger-wrapper .hamburger:after {
+    -webkit-transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
+    transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
+    transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+    transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
+    position: absolute;
+    background: white;
+    width: 30px;
+    height: 4px;
+    content: "";
+  }
+  .burger-wrapper .hamburger:before {
+    top: -8px;
+  }
+  .burger-wrapper .hamburger:after {
+    top: 8px;
+  }
+  
+  .menu-trigger:checked ~ .burger-wrapper .hamburger {
+    background: transparent;
+  }
+  .menu-trigger:checked ~ .burger-wrapper .hamburger:after, .menu-trigger:checked ~ .burger-wrapper .hamburger:before {
+    -webkit-transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
+    transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
+    transition: top 300ms 50ms ease, transform 300ms 350ms ease;
+    transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
+    top: 0;
+  }
+  .menu-trigger:checked ~ .burger-wrapper .hamburger:before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .menu-trigger:checked ~ .burger-wrapper .hamburger:after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  

@@ -15,6 +15,7 @@ import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import{MatSidenavModule, MatToolbarModule} from '@angular/material';
 // import { RoleComponent } from './Model/role/role.component';
 
 @NgModule({
@@ -36,7 +37,9 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   providers: [
     UserService,

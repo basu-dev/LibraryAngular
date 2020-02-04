@@ -1,11 +1,12 @@
+import { Router } from '@angular/router';
 import { catchError, map, tap } from 'rxjs/operators';
 import { FormBuilder,Validators, FormGroup,FormControl } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Injectable } from "@angular/core";
 import { Global } from '../global/serverlinks';
 import { User } from '../Model/user';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -14,13 +15,13 @@ import { Observable } from 'rxjs';
 
 export class UserService{
     Observable: any;
-  constructor(public fb:FormBuilder,public http:HttpClient){}
+  constructor(public fb:FormBuilder,public http:HttpClient,public router:Router){}
     public registerModel=this.fb.group({
         UserName:['BasuDev',[Validators.required,Validators.minLength(4)]],
         Passwords:this.fb.group({
-            Password:['BasuDev@123',[Validators.required,Validators.minLength(8),
+            Password:['BasuDev@123',[Validators.required,Validators.minLength(6),
                         Validators.maxLength(16)]],
-            ConfirmPassword:['BasuDev@123',[Validators.required,Validators.minLength(8),
+            ConfirmPassword:['BasuDev@123',[Validators.required,Validators.minLength(6),
                 Validators.maxLength(16)]]
         
         },{validator:this.passwordMismatch})
@@ -42,33 +43,35 @@ export class UserService{
     register(){
         let body={
             "UserName":this.registerModel.value.UserName,
-            "Password":this.registerModel.value.Password,
-            "ConfirmPassword":this.registerModel.value.ConfirmPassword
-        }
-        return this.http.post<Observable<User>>(Global.REGISTER_USER,body).pipe(
-            map(response=>response),
-            tap(response=>console.log(response)),
+            "Password":this.registerModel.value.Passwords.Password,
+            "ConfirmPassword":this.registerModel.value.Passwords.ConfirmPassword
+        };
+        let headers=new HttpHeaders({'Content-Type':'application/json'})
+        return this.http.post(Global.REGISTER_USER,body,{headers:headers}).pipe(
             catchError(this.handleError)
-        
-        )
+        );
+       
     }
     loginModel=this.fb.group({
         UserName:['',[Validators.required,Validators.minLength(4)]],
-        Password:['',[Validators.required,Validators.minLength(8)]]
+        Password:['',[Validators.required,Validators.minLength(6)]]
     })
     login(){
         let body={
             "UserName":this.loginModel.value.UserName,
             "Password":this.loginModel.value.Password,
         }
-        return this.http.post<Observable<User>>(Global.LOGIN,body).pipe(
-            map(response=>response),
-            tap(response=>console.log(response)),
+        return this.http.post(Global.LOGIN,body).pipe(
             catchError(this.handleError)
         
         )
     }
+    public logout(){
+        localStorage.removeItem("user");
+        localStorage.removeItem("userToken");
+        this.router.navigate(["/login"])
+    }
     public handleError(error:HttpErrorResponse){
-       return Observable.throw(error.message || 'server error');
+       return throwError(error.error || 'server error');
     }
 }

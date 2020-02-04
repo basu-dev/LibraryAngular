@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditroleComponent } from './components/editrole/editrole.component';
@@ -9,10 +10,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path:"",redirectTo:"/rolelist",pathMatch:"full"},
- {path:("rolelist"),component:RolelistComponent} ,
- {path:("createrole"),component:CreateroleComponent} ,
- {path:("editrole/:id"),component:EditroleComponent},
- {path:("register"),component:RegisterComponent},
+ {path:("rolelist"),component:RolelistComponent,canActivate:[AuthGuard]} ,
+ {path:("createrole"),component:CreateroleComponent,canActivate:[AuthGuard]} ,
+ {path:("editrole/:id"),component:EditroleComponent,canActivate:[AuthGuard]},
+ {path:("register"),component:RegisterComponent,canActivate:[AuthGuard]},
  {path:("login"),component:LoginComponent},
 
  

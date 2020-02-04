@@ -3,7 +3,8 @@
 
         <div style="width:100%" class="mx-auto mt-2">
             <form [formGroup]="service.registerModel" class="signup_form" autocomplete="off" (submit)="submit()" method="post">
-                    <legend class=title >Login</legend>
+                    <legend class=title >Register User</legend>
+                    <div class="text-danger bg-dark p-2" *ngIf="message">{{message}}</div>
             <div class="form-group">
                 <label class='label'  >UserName</label>
                 <input  class=" input" formControlName="UserName">

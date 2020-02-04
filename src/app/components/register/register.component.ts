@@ -1,5 +1,6 @@
 import { UserService } from './../../Service/user.service';
 import { Component, OnInit } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -9,19 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   constructor(public service:UserService) { }
+public message;
 
   ngOnInit(
     
   ) {
-    this.service.registerModel.value.UserName="BasuDev";
-    this.service.registerModel.value.Password="BasuDev@123";
-    this.service.registerModel.value.ConfirmPassword="BasuDev@123";
+   
   }
   submit(){
-    console.log(this.service.registerModel);
+    this.message=""; 
     this.service.register().subscribe(
-      (result:any)=>console.log(result),
-      error=>console.log(error)
+      (result:any)=>{
+        localStorage.setItem("userToken",result.token),
+        localStorage.setItem("user",JSON.stringify(result.user));
+        this.message="User Created Successfully"
+
+      },
+      error=>this.message=error.message
     )
   }
 

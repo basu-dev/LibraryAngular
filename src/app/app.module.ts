@@ -31,7 +31,8 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [
     UserService,

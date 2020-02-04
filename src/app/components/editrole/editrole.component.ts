@@ -1,6 +1,7 @@
 import { RoleserviceService } from './../../Service/roleservice.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Role } from 'src/app/Model/role';
 
 @Component({
   selector: 'app-editrole',
@@ -16,8 +17,9 @@ export class EditroleComponent implements OnInit {
   public btnText="Save";
   ngOnInit() {
     this.id$=this.route.snapshot.paramMap.get('id');
-    console.log(this.id$);
-     this.data=this.service.GetRole(this.id$);
+     this.data=this.service.GetRole(this.id$).subscribe(
+       (result:Role)=>console.log(result)
+     );
       
      
   }

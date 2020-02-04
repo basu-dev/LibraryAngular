@@ -13,6 +13,8 @@ import { EditroleComponent } from './components/editrole/editrole.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 // import { RoleComponent } from './Model/role/role.component';
 
 @NgModule({
@@ -23,6 +25,7 @@ import { RegisterComponent } from './components/register/register.component';
     EditroleComponent,
     LoginComponent,
     RegisterComponent,
+    NotfoundComponent,
     // RoleComponent
   ],
   imports: [
@@ -32,7 +35,8 @@ import { RegisterComponent } from './components/register/register.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,

@@ -1,3 +1,4 @@
+import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AuthGuard } from './guard/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
  {path:("login"),component:LoginComponent},
 
  
- {path:"404",component:RolelistComponent},
+ {path:"404",component:NotfoundComponent},
  {path:"**",redirectTo:"/404",pathMatch:"full"}
 
 ];

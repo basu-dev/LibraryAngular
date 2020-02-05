@@ -39,7 +39,8 @@ import{MatSidenavModule, MatToolbarModule} from '@angular/material';
     RouterModule,
     BrowserAnimationsModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    
   ],
   providers: [
     UserService,

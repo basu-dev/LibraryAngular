@@ -1,5 +1,6 @@
 <mat-sidenav-container>
-    <mat-sidenav  [(opened)]="opened" mode="side"></mat-sidenav>
+    <mat-sidenav  [(opened)]="opened" (opened)="open()" mode="side">
+    </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar class="mynav">
             <input class="menu-trigger hidden" (click)="opened=!opened" id="togglenav" type="checkbox"/>

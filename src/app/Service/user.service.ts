@@ -47,10 +47,7 @@ export class UserService{
             "ConfirmPassword":this.registerModel.value.Passwords.ConfirmPassword
         };
         let headers=new HttpHeaders({'Content-Type':'application/json'})
-        return this.http.post(Global.REGISTER_USER,body,{headers:headers}).pipe(
-            catchError(this.handleError)
-        );
-       
+        return this.http.post(Global.REGISTER_USER,body,{headers:headers})
     }
     loginModel=this.fb.group({
         UserName:['',[Validators.required,Validators.minLength(4)]],
@@ -61,17 +58,15 @@ export class UserService{
             "UserName":this.loginModel.value.UserName,
             "Password":this.loginModel.value.Password,
         }
-        return this.http.post(Global.LOGIN,body).pipe(
-            catchError(this.handleError)
-        
-        )
+        return this.http.post(Global.LOGIN,body)
     }
     public logout(){
         localStorage.removeItem("user");
         localStorage.removeItem("userToken");
         this.router.navigate(["/login"])
     }
-    public handleError(error:HttpErrorResponse){
-       return throwError(error.error || 'server error');
+    public test(){
+       return this.http.get(`${Global.BASE_HOST_ENDPOINT}/whatever`)
     }
+   
 }

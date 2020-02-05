@@ -1,3 +1,4 @@
+import { TestComponent } from './components/test/test.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AuthGuard } from './guard/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
  {path:("editrole/:id"),component:EditroleComponent,canActivate:[AuthGuard]},
  {path:("register"),component:RegisterComponent,canActivate:[AuthGuard]},
  {path:("login"),component:LoginComponent},
-
+{path:"test",component:TestComponent},
  
  {path:"404",component:NotfoundComponent},
  {path:"**",redirectTo:"/404",pathMatch:"full"}

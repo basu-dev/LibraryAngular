@@ -9,11 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(public router:Router){}
-  ngOnInit(): void {
+  constructor(public router:Router){
+    try{
+      this.User=JSON.parse(localStorage.getItem("user")).userName
+    }
+    catch(Exception){
+      this.User="User"
+    }
+    
 
-    this.navlist=navcomponents
   }
+  ngOnInit(): void {
+    
+    this.navlist=navcomponents;
+
+  }
+  User="User";
   navlist;
   title = 'library';
   opened=false;

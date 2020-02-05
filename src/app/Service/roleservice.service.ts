@@ -16,22 +16,15 @@ public data;
 
 
 public GetRole(id){
-  return this.http.get(Global.EDIT_ROLE+id).pipe(
-    catchError((error)=>this.handleError)
-  )
-  return this.data;
+  return this.http.get(Global.EDIT_ROLE+id)
+ 
 }
 public EditRole(id):Observable<Role>{
- return this.http.get<Role>(Global.GET_ALL_ROLES).pipe(
-   catchError(error=> this.handleError)
-   
-  )
+ return this.http.get<Role>(Global.GET_ALL_ROLES)
+
   
 }
-public handleError(error:HttpErrorResponse){
-  
-  return throwError(error.error)
-}
+
 
 
 }

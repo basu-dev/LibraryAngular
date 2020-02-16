@@ -1,4 +1,4 @@
-import { ActionTypes, authActions } from './auth.action';
+import { ActionTypes, authActions } from '../actions/index';
 
 export interface State{
     IsAuthenticated:boolean

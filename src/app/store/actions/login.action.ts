@@ -1,7 +1,6 @@
 import { User } from 'src/app/Model/user'
 
 
-
 export const UserActionTypes={
     LOAD_DATA:'[User] Loading Data',
     LOAD_DATA_SUCCESS:'[User] Loading Data Success',

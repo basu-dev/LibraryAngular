@@ -1,6 +1,8 @@
 import { UserService } from './../../Service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {Store} from "@ngrx/store";
+import * as fromApp from "../../app.reducer";
 
 
 @Component({
@@ -10,7 +12,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public service:UserService,public router:Router,public route:ActivatedRoute) { 
+  constructor(
+    public service:UserService,
+    public router:Router,
+    public route:ActivatedRoute,
+    public store:Store<fromApp.State>
+    ) 
+    { 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'rolelist';
   }
 public message:string;
@@ -26,8 +34,9 @@ public returnUrl:string;
     this.service.loginModel.reset();
   }
   submit(){
-    this.message=""
-    this.service.setToken("sdf");
+    this.message="";
+    
+    this.service.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c");
     this.router.navigateByUrl(this.returnUrl)
 
   }

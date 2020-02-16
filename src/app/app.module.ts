@@ -43,7 +43,8 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools"
     // RoleComponent
   ],
   imports: [
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('appstate',reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),

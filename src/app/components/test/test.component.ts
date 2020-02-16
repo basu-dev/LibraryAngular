@@ -17,7 +17,7 @@ export class TestComponent implements OnInit {
   test(){
     this.service.test().subscribe(
       data=>console.log("Data:",data),
-      error=>console.log("Erro from comp::",error)
+      error=>console.log("Erro from compoentn::",error)
     )
   }
 

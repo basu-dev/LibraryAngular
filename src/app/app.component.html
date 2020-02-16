@@ -1,5 +1,7 @@
-<mat-sidenav-container>
-    <mat-sidenav  [(opened)]="opened" (opened)="open()" mode="side">
+
+<mat-sidenav-container *ngIf="loggedin$ | async else notLoggedIn">
+    <mat-sidenav  [(opened)]="opened" mode="side" style="padding:0;margin:0" >
+        <app-header-component></app-header-component>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar class="mynav">
@@ -10,7 +12,7 @@
             <div>
                 <span >Home</span>
                 <span>Contact</span>
-                <span>{{User}}</span>
+                <span (click)="logout()">{{User}}</span>
                 <!-- <button mat-raised-button [mat-menu-trigger-for]="usermenu">User</button>
                 <mat-menu #usermenu="matMenu">
                     <button mat-menu-item>
@@ -26,9 +28,13 @@
                 </mat-menu> -->
                
             </div>
-        </mat-toolbar>
-        <router-outlet>
+        </mat-toolbar >
+        <router-outlet class="router-outlet">
             
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
+<ng-template #notLoggedIn>
+    <router-outlet>
+    </router-outlet>
+</ng-template>

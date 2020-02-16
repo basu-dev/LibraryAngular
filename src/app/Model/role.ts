@@ -1,7 +1,7 @@
 import { User } from './user';
 
 export class Role {
-    roleName:string;
+    name:string;
     id:string;
     users:User[];
 }

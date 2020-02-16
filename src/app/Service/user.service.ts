@@ -1,13 +1,15 @@
+import { User } from './../Model/user';
 import { Router } from '@angular/router';
-import { catchError, map, tap } from 'rxjs/operators';
 import { FormBuilder,Validators, FormGroup,FormControl } from '@angular/forms';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import * as jwt_decode from "jwt-decode";
 import { Injectable } from "@angular/core";
 import { Global } from '../global/serverlinks';
-import { User } from '../Model/user';
-import { Observable, throwError } from 'rxjs';
-
+import { Store } from '@ngrx/store';
+import * as fromApp from "../app.reducer";
+import * as auth from "../store/auth/auth.action";
+import * as userAction from "../store/login/login.action";
+import * as jwt_decode from "jwt-decode"
 
 @Injectable({
     providedIn:"root"
@@ -15,12 +17,12 @@ import { Observable, throwError } from 'rxjs';
 
 export class UserService{
     Observable: any;
-  constructor(public fb:FormBuilder,public http:HttpClient,public router:Router){}
+  constructor(public fb:FormBuilder,public http:HttpClient,public router:Router,public store:Store<fromApp.State>){}
     public registerModel=this.fb.group({
         UserName:['BasuDev',[Validators.required,Validators.minLength(4)]],
         Passwords:this.fb.group({
             Password:['BasuDev@123',[Validators.required,Validators.minLength(6),
-                        Validators.maxLength(16)]],
+                                    Validators.maxLength(16)]],
             ConfirmPassword:['BasuDev@123',[Validators.required,Validators.minLength(6),
                 Validators.maxLength(16)]]
         
@@ -63,10 +65,20 @@ export class UserService{
     public logout(){
         localStorage.removeItem("user");
         localStorage.removeItem("userToken");
+        this.store.dispatch(new auth.IsUnAuthenticated)
         this.router.navigate(["/login"])
     }
     public test(){
        return this.http.get(`${Global.BASE_HOST_ENDPOINT}/whatever`)
     }
-   
+getToken(){
+    let token=localStorage.getItem('userToken');
+    return token;
+}
+setToken(token){
+    this.store.dispatch(new auth.IsAuthenticated);
+    // let user:User=jwt_decode(token);
+    // this.store.dispatch(new userAction.loadData)
+    localStorage.setItem("userToken",token);
+}
 }

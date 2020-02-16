@@ -1,8 +1,7 @@
-import { RoleserviceService } from './../../Service/roleservice.service';
+import { RoleserviceService } from './../../../Service/roleservice.service';
 import { Router, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {switchMap} from "rxjs/operators";
 @Component({
   selector: 'app-createrole',
   templateUrl: './createrole.component.html',

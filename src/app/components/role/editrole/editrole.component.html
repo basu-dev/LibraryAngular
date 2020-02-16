@@ -1,0 +1,13 @@
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <legend>{{title}}</legend>
+        
+            <form class="form-group" [formGroup]='editForm ' (submit)="Submit()">
+                <input class="form-control" formControlName="name" />
+                <button class="form-control btn btn-success"  >{{title}}</button>
+
+            </form>
+        
+    </div>
+</div>

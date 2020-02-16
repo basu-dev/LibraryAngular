@@ -1,7 +1,6 @@
-import { FormGroup } from '@angular/forms';
 import { UserService } from './../../Service/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -11,32 +10,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public service:UserService,public router:Router) { }
-public message;
+  constructor(public service:UserService,public router:Router,public route:ActivatedRoute) { 
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'rolelist';
+  }
+public message:string;
 public passwordmarkup={
   mesasge:"",
   clicked:false,
-
-
 }
 public texttype='password';
 public clicked:boolean;
-  ngOnInit(
-    
-  ) 
+public returnUrl:string;
+  ngOnInit( ) 
   {
     this.service.loginModel.reset();
   }
   submit(){
     this.message=""
-    this.service.login().subscribe(
-      (result:any)=>{
-        localStorage.setItem("userToken",result.token),
-        localStorage.setItem("user",JSON.stringify(result.user)),
-        this.router.navigate(["/rolelist"]);
-      },
-      error=>this.message=error.message
-    )
+    this.service.setToken("sdf");
+    this.router.navigateByUrl(this.returnUrl)
+
   }
   public showPassword(object:any){
     if(!this.clicked){

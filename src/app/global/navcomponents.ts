@@ -1,7 +1,7 @@
 export const navcomponents=[
     {
       title: 'Front Office',
-      icon: 'layout-outline',
+      icon: 'fa fa-column',
       children: [
         {
         
@@ -471,7 +471,7 @@ export const navcomponents=[
           children: [
             {
               title: 'Department',
-              link: '/auth/login',
+              link: 'login',
             },
             {
               title: 'Financial Year',

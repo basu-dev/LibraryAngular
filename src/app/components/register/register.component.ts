@@ -1,6 +1,5 @@
 import { UserService } from './../../Service/user.service';
 import { Component, OnInit } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',

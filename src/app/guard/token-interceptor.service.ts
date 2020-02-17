@@ -27,11 +27,11 @@ export class TokenInterceptorService implements HttpInterceptor{
   handleError(error:HttpErrorResponse){
 
     if(error instanceof HttpErrorResponse){
-      console.log("Server Error",error.message)
+      console.log("Server Error",error.error)
       if(error.status==401){
        alert("Not Authorized");
       }
-      this.err=error.message;
+      this.err=error.error;
     }
     else{
       console.log("Client Side Error",error),

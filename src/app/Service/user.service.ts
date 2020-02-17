@@ -84,7 +84,5 @@ export class UserService {
         // this.store.dispatch(new userAction.loadData)
         localStorage.setItem("userToken", token);
     }
-    getUser():Observable<User>{
-       return this.http.get<User>("https://jsonplaceholder.typicode.com/users/1")  
-    }
+    
 }

@@ -1,4 +1,4 @@
-<div *ngFor="let role of data">
+<div *ngFor="let role of data; let i =index" >
 
 <div class="card mb-2 border-dark">
     <div class="card-header">
@@ -13,7 +13,7 @@
                 <button class="btn-primary" routerLink="/editrole/{{role.id}}" (click)="EditRole(role.id)">Edit</button>
             </a>
             <a >
-                <button class="btn-danger">Delete</button>
+                <button class="btn-danger" (click)="DeleteRole(role.id,i)">Delete</button>
             </a>
         </div>
     </div>
@@ -41,4 +41,4 @@
         </div>
 
    
-</div>
+

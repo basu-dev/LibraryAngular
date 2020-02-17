@@ -1,6 +1,6 @@
 import { RoleserviceService } from './../../../Service/roleservice.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Role } from 'src/app/Model/role';
 import { FormBuilder } from '@angular/forms';
 
@@ -22,26 +22,22 @@ export class EditroleComponent implements OnInit {
   public title="Edit Role";
   public btnText="Save";
   public editForm;
+  public rolename:string;
+  public name$;
   ngOnInit() {
+    this.id$=this.route.snapshot.paramMap.get('id');
+    this.route.queryParams.subscribe(
+      params=>this.name$=params['name']
+    )
     this.editForm=this.fb.group({
-      name:[""],
+      name:[this.name$],
       Id:[""]
     })          
-    this.id$=this.route.snapshot.paramMap.get('id');
-     this.data=this.service.GetRole(this.id$).subscribe(
-       (result:Role)=>{
-         this.editForm.value.name=result.name,
-         this.editForm.value.Id=result.id
-        err=>console.log(err)
-       }
-     );
-
   }
   Submit(){
    let body={
     "id":this.id$,
      "name":this.editForm.value.name,
-     
      "users":[]
 
    }

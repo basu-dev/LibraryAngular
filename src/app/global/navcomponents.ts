@@ -1,20 +1,20 @@
 export const navcomponents=[
     {
-      title: 'Front Office',
+      title: 'Master',
       icon: 'fa fa-column',
       children: [
         {
         
-          title: 'Booking',
+          title: 'Role',
           icon: 'fa fa-circle',
           children: [
             {
-              title: 'Check-in',
-              link: '/pages/layout/tabs',
+              title: 'RoleList',
+              link: '/rolelist',
             },
-            {
-              title: 'Guest Status',
-              link: '/pages/layout/accordion',
+             {
+               title: 'CreateRole',
+               link: '/createrole',
             },
             {
               title: 'Check-Out',
@@ -35,16 +35,16 @@ export const navcomponents=[
           ]
         },
         {
-          title: 'Master Setup',
+          title: 'User Manager',
           icon: 'home-outline',
           children: [
             {
-              title: 'Payment',
-              link: '/pages/layout/iot-dashboard',
+              title: 'Users',
+              link: '/register',
             },
             {
-              title: 'Facility',
-              link: '/pages/ui-features/grid',
+              title: 'CreateUser',
+              link: '/register',
             },
             {
               title: 'Room',

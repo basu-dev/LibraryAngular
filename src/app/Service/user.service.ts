@@ -10,6 +10,7 @@ import * as fromApp from "../app.reducer";
 import * as auth from "../store/actions/auth.action";
 import * as userAction from "../store/actions/login.action";
 import * as jwt_decode from "jwt-decode"
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: "root"
@@ -80,5 +81,8 @@ export class UserService {
         // let user:User=jwt_decode(token);
         // this.store.dispatch(new userAction.loadData)
         localStorage.setItem("userToken", token);
+    }
+    getUser():Observable<User>{
+       return this.http.get<User>("https://jsonplaceholder.typicode.com/users/1")  
     }
 }

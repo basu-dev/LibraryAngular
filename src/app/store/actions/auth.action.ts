@@ -2,8 +2,8 @@ import { Action } from '@ngrx/store';
 
 export const ActionTypes={
 
-  IS_AUTHENTICATED : '[NameSpace] Is Authenticated',
-  IS_UNAUTHENTICATED : '[NameSpace] Is UnAuthenticated',
+  IS_AUTHENTICATED : '[auth] Is Authenticated',
+  IS_UNAUTHENTICATED : '[auth] Is UnAuthenticated',
 
 
 }

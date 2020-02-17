@@ -7,10 +7,11 @@ import { Injectable } from "@angular/core";
 import { Global } from '../global/serverlinks';
 import { Store } from '@ngrx/store';
 import * as fromApp from "../app.reducer";
-import * as auth from "../store/actions/auth.action";
-import * as userAction from "../store/actions/login.action";
+import * as actions from "../store/actions/index";
 import * as jwt_decode from "jwt-decode"
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ServerUser } from '../Model/serveruser.model';
 
 @Injectable({
     providedIn: "root"
@@ -53,20 +54,20 @@ export class UserService {
         return this.http.post(Global.REGISTER_USER, body, { headers: headers })
     }
     loginModel = this.fb.group({
-        UserName: ['', [Validators.required, Validators.minLength(4)]],
-        Password: ['', [Validators.required, Validators.minLength(6)]]
+        UserName: ['Dev123', [Validators.required, Validators.minLength(4)]],
+        Password: ['Dev@123', [Validators.required, Validators.minLength(6)]]
     })
     login() {
         let body = {
             "UserName": this.loginModel.value.UserName,
             "Password": this.loginModel.value.Password,
         }
-        return this.http.post(Global.LOGIN, body)
+        return this.http.post<ServerUser>(Global.LOGIN, body)
     }
     public logout() {
         localStorage.removeItem("user");
         localStorage.removeItem("userToken");
-        this.store.dispatch(new auth.IsUnAuthenticated)
+        this.store.dispatch(new actions.IsUnAuthenticated)
         this.router.navigate(["/login"])
     }
     public test() {
@@ -77,8 +78,9 @@ export class UserService {
         return token;
     }
     setToken(token) {
-        this.store.dispatch(new auth.IsAuthenticated);
-        // let user:User=jwt_decode(token);
+        this.store.dispatch(new actions.IsAuthenticated);
+        let user:User=jwt_decode(token);
+        this.store.dispatch(new actions.loadDataSuccess(user))
         // this.store.dispatch(new userAction.loadData)
         localStorage.setItem("userToken", token);
     }

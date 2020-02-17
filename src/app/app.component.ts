@@ -26,7 +26,6 @@ export class AppComponent {
   ngOnInit(): void {
     var result = this.userService.getToken();
     if (result != null) {
-      console.log(jwtdecode(result));
       this.store.dispatch(new actions.IsAuthenticated()),
       this.userService.getUser().subscribe(
         result=>this.store.dispatch(

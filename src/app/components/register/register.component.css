@@ -1,0 +1,11 @@
+.passwordbox{
+    position: relative;
+    display:flex;
+}
+.eye{
+    position: absolute;
+    right:5px;
+    left:auto;
+    top:.3em;
+
+}

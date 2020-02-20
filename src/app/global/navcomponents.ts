@@ -1,6 +1,6 @@
 export const navcomponents=[
     {
-      title: 'Master',
+      title: 'User',
       icon: 'fa fa-column',
       children: [
         {

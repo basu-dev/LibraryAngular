@@ -10,7 +10,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(public service:UserService) { }
 public message;
-
+public clicked:boolean=false;
+public texttype='password'
   ngOnInit(
     
   ) {
@@ -27,6 +28,15 @@ public message;
       },
       error=>this.message=error.message
     )
+  }
+  public showPassword(object: any) {
+    if (!this.clicked) {
+      this.clicked = true;
+      this.texttype = "text";
+    } else {
+      this.texttype = "password";
+      this.clicked = false;
+    }
   }
 
 }

@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
           this.service.setToken(result.token)
           this.store.dispatch(new actions.IsAuthenticated),
           this.router.navigateByUrl(this.returnUrl);
+          window.location.reload();
       },
       error => (this.message = error)
     );

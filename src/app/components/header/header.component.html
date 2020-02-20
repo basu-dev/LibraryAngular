@@ -1,79 +1,79 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 <aside class="main-sideba">
     <section class="sideba">
-     <ul class="sidebar-menu tree" *ngFor="let item of items" data-widget="tree">
-            <li class="treeview mb-1" [class.group]="item.group" >
-                <a   *ngIf="item.children; else elseBlockk">
-                    <i class="text-danger"></i> 
+        <ul class="sidebar-menu tree" *ngFor="let item of items" data-widget="tree">
+            <li class="treeview mb-1" [class.group]="item.group">
+                <a *ngIf="item.children; else elseBlockk">
+                    <i class="text-danger"></i>
                     <i [ngClass]="item.icon" class="pull-left"></i><span>{{item.title}}</span>
-                   <span class="pull-right-container">
+                    <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ng-template #elseBlockk>
-                    <a (click)=open(item.link) >
+                    <a (click)=open(item.link)>
                         <i class=""></i> <span class="coloring">{{item.title}}</span>
                         <span class="pull-right-container">
                         </span>
                     </a>
                 </ng-template>
-                    <ul class="treeview-menu second " data-widget="second">
-                        <div  *ngFor="let child of item.children" >
+                <ul class="treeview-menu second " data-widget="second">
+                    <div *ngFor="let child of item.children">
                         <li class="treeview">
                             <a href="#" class="flexing" *ngIf="child.children; else elseBlock">
-                                <i [ngClass]="child.icon" class="pull-left"></i><span class="textleft">{{child.title}}</span><span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span></a>
+                                <i [ngClass]="child.icon" class="pull-left"></i><span
+                                    class="textleft">{{child.title}}</span><span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span></a>
                             <ng-template #elseBlock>
-                                <a  (click)=open(child.link)>
+                                <a (click)=open(child.link)>
                                     <i class=""></i> <span class="anothersecond">{{child.title}}</span>
                                     <span class="pull-right-container">
-                                        
+
                                     </span>
                                 </a>
                             </ng-template>
                             <ul class="treeview-menu">
-                                <div  *ngFor="let chil of child.children">
+                                <div *ngFor="let chil of child.children">
                                     <a (click)=open(chil.link)>
-                                <li class="treeview secondinner">
-                                    
-                                    <i class=""></i><span>{{chil.title}}</span><span class="pull-right-container">
-                                        <i class=""></i>
-                                    </span>
-                                    
-                                </li>
-                            </a>
+                                        <li class="treeview secondinner">
+
+                                            <i class=""></i><span>{{chil.title}}</span><span
+                                                class="pull-right-container">
+                                                <i class=""></i>
+                                            </span>
+
+                                        </li>
+                                    </a>
                                 </div>
-                                
+
                             </ul>
 
                         </li>
-                       
-                        
-                        </div>
-                        
-                    </ul>
+
+
+                    </div>
+
+                </ul>
 
             </li>
         </ul>
 
     </section>
-    
+
 </aside>
 
 <style>
-/* .treeview{
+    /* .treeview{
     padding-top:3px;
     padding-bottom:3px;
     border-bottom:1px solid rgba(255,255,255,.1)
 } */
-.group{
-    border:'none';
-    background-color:'white';
-    font-size:"1.2em";
-    color:"blue";
-    letter-spacing:".1em"
-}
-
-
+    .group {
+        border: 'none';
+        background-color: 'white';
+        font-size: "1.2em";
+        color: "blue";
+        letter-spacing: ".1em"
+    }
 </style>

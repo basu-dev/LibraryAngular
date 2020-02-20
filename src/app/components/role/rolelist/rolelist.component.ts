@@ -1,10 +1,12 @@
 import { Global } from "./../../../global/serverlinks";
 
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { RoleserviceService } from "src/app/Service/roleservice.service";
+import {BsModalComponent} from "ng2-bs3-modal"
+
 @Component({
   selector: "app-rolelist",
   templateUrl: "./rolelist.component.html",
@@ -22,15 +24,10 @@ export class RolelistComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let result = this.http
-      .get<Observable<any>[]>(Global.GET_ALL_ROLES)
-      .subscribe(
-        data => {
-          this.data = data;
-        },
+     this.route.data.subscribe(
+      result=>this.data=result.roleList
+    );
 
-        error => console.log(error)
-      );
   }
   showResult() {
     console.log(
@@ -52,7 +49,7 @@ export class RolelistComponent implements OnInit {
         console.log("Role found:" + role),
         this.router.navigate([
           "editrole",
-          id],{queryParams:{name:role.name}}),
+          id],{queryParams:{name:role.name},skipLocationChange:true}),
       err => console.log(err);
     });
    
@@ -64,11 +61,21 @@ export class RolelistComponent implements OnInit {
         this.service.DeleteRole(id).subscribe(
           result=>{
             console.log(result)
-            this.data.splice(index)
+            this.data.remove(index) 
           },
           err=>console.log(err)
         )
       }
     )
   }
+  // @ViewChild('modal',{static:false})
+  // modal: BsModalComponent;
+
+  // close() {
+  //     this.modal.close();
+  // }
+  
+  // open() {
+  //     this.modal.open();
+  // }
 }

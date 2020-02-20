@@ -12,16 +12,16 @@ import { of } from 'rxjs/internal/observable/of';
 export class UserEffects{
     constructor(public actions$:Actions,public http:HttpClient,public userService:UserService){}
 
-loadUser$ = createEffect(() => {
-    return this.actions$.pipe(
-            ofType(userAction.UserActionTypes.LOAD_DATA)
-            ),
-            mergeMap(()=>{
-                return this.userService.getUser().pipe(
-                    map(user=>new userAction.loadDataSuccess(user)),
-                    catchError(err=>of(new userAction.loadDataFailure(err)))
-                )
-            })
+// loadUser$ = createEffect(() => {
+//     return this.actions$.pipe(
+//             ofType(userAction.UserActionTypes.LOAD_DATA)
+//             ),
+//             mergeMap(()=>{
+//                 return this.userService.getUser().pipe(
+//                     map(user=>new userAction.loadDataSuccess(user)),
+//                     catchError(err=>of(new userAction.loadDataFailure(err)))
+//                 )
+//             })
     
-});
+// });
 }

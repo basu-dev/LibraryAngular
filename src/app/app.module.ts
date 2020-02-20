@@ -1,3 +1,4 @@
+import { RoleListResolverService } from './Service/rolelist-resover.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +14,9 @@ import { StoreModule } from '@ngrx/store';
 import {EffectsModule} from "@ngrx/effects";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RoleserviceService } from 'src/app/Service/roleservice.service';
+
+//Third Party Libraries
+import {BsModalModule} from "ng2-bs3-modal"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,11 +66,13 @@ import { UserService } from './Service/user.service';
     MatMenuModule,
     MatCardModule,
     MatIconModule, 
+    BsModalModule
   ],
   providers: [
     { provide: 'NAVCOMPONENTS', useValue: navcomponents },
     UserService,
     RoleserviceService,
+    RoleListResolverService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,

@@ -1,27 +1,34 @@
-<div class="row">
-    <div class="col-md-6 offset-3">
+<div class="editroleform">
+    <div class="form-content">
 
-        <div style="width:100%" class="mx-auto mt-2">
+        <div style="width:100%" class="mx-auto">
             <form [formGroup]="service.registerModel" class="signup_form" autocomplete="off" (submit)="submit()" method="post">
                     <legend class=title >Register User</legend>
                     <div class="text-danger bg-dark p-2" *ngIf="message">{{message}}</div>
             <div class="form-group">
                 <label class='label'  >UserName</label>
                 <input  class=" input" formControlName="UserName">
-                <div class="smalltext" *ngIf="service.registerModel.get('UserName').touched && service.registerModel.get('UserName').errors?.required" >UserName Required</div>
+                <div class="smalltext text-light" *ngIf="service.registerModel.get('UserName').touched && service.registerModel.get('UserName').errors?.required" >UserName Required</div>
                 <div class="sm  alltext" *ngIf="service.registerModel.get('UserName').touched && service.registerModel.get('UserName').errors?.minLength">UserName must be at least of 4 characters</div>
             </div>
             <div  formGroupName="Passwords">
             <div class="form-group">
                 <label class='label' >Password</label>
-                <input type="password"  class=" input" formControlName="Password">
-                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.required" >Password Required</div>
-                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.minLength" >Must be at least 8 words including numbers,capital letter and special characters.</div>
+                <div class="passwordbox">
+                <input [type]="texttype"  class=" input" formControlName="Password" #password>
+                <div type="button" class=" uk-icon-eye eye" [style.color]="clicked?'red':'black'" (click)="showPassword(password)">Show</div>
+                </div>
+                <div  class="smalltext text-light" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.required" >Password Required</div>
+                <div  class="smalltext text-light" *ngIf="service.registerModel.get('Passwords.Password').touched && service.registerModel.get('Passwords.Password').errors?.minLength" >Must be at least 8 words including numbers,capital letter and special characters.</div>
             </div>
             <div class="form-group">
                 <label class='label' >ReType Password</label>
-                <input type="password"  class=" input" formControlName="ConfirmPassword">
-                <div  class="smalltext" *ngIf="service.registerModel.get('Passwords.ConfirmPassword').touched && service.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch" >Two Passwords do not match.</div>
+                <div class="passwordbox">
+                <input [type]="texttype"  class=" input" formControlName="ConfirmPassword" #confirmpassword>
+                <div type="button" class=" uk-icon-eye eye" [style.color]="clicked?'red':'black'" (click)="showPassword(confirmpassword)">Show</div>
+
+                </div>
+                <div  class="smalltext text-light" *ngIf="service.registerModel.get('Passwords.ConfirmPassword').touched && service.registerModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch" >Two Passwords do not match.</div>
             </div>
             </div>
             <button type="submit" class="signupbtn"   >Login</button>

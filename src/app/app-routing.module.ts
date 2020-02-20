@@ -1,3 +1,4 @@
+import { RoleListResolverService } from './Service/rolelist-resover.service';
 import { LoginGuard } from './guard/login.guard';
 import { TestComponent } from './components/test/test.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
@@ -12,17 +13,28 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path:"",redirectTo:"/rolelist",pathMatch:"full"},
- {path:("rolelist"),component:RolelistComponent,canActivate:[AuthGuard]} ,
- {path:("createrole"),component:CreateroleComponent,canActivate:[AuthGuard]} ,
- {path:("editrole/:id"),component:EditroleComponent,canActivate:[AuthGuard]},
- {path:("register"),component:RegisterComponent,canActivate:[AuthGuard]},
- {path:("login"),component:LoginComponent,canActivate:[LoginGuard]},
-{path:"test",component:TestComponent},
- 
- {path:"**",component:NotfoundComponent},
-//  {path:"**",redirectTo:"/404",pathMatch:"full"}
+  { path: "", redirectTo: "/rolelist", pathMatch: "full" },
+  { path: "rolelist",
+   component: RolelistComponent,
+    canActivate: [AuthGuard] ,
+    resolve:{roleList:RoleListResolverService}
+  },
+  {
+    path: "createrole",
+    component: CreateroleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "editrole/:id",
+    component: EditroleComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: "register", component: RegisterComponent, canActivate: [AuthGuard] },
+  { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+  { path: "test", component: TestComponent },
 
+  { path: "**", component: NotfoundComponent }
+  //  {path:"**",redirectTo:"/404",pathMatch:"full"}
 ];
 
 @NgModule({

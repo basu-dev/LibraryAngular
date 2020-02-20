@@ -28,4 +28,7 @@ public DeleteRole(id){
   let url=`${Global.DELETE_ROLE}/${id}`
   return this.http.post(url,id)
 }
+public GetRoleWithUsers(){
+  return this.http.get<Role[]>(Global.BASE_HOST_ENDPOINT)
+}
 }

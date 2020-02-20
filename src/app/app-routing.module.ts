@@ -19,6 +19,11 @@ const routes: Routes = [
     canActivate: [AuthGuard] ,
     resolve:{roleList:RoleListResolverService}
   },
+  // { path: "rolelist",
+  //  component: RolelistComponent,
+  //   canActivate: [AuthGuard] ,
+    
+  // },
   {
     path: "createrole",
     component: CreateroleComponent,

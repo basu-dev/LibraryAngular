@@ -3,7 +3,7 @@ import { Global } from "./../../../global/serverlinks";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { RoleserviceService } from "src/app/Service/roleservice.service";
 import {BsModalComponent} from "ng2-bs3-modal"
 
@@ -24,10 +24,16 @@ export class RolelistComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-     this.route.data.subscribe(
-      result=>this.data=result.roleList
-    );
+    this.data = this.route.snapshot.data['roleList']
+    // this.http
+    //   .get<Observable<any>[]>(Global.GET_ALL_ROLES)
+    //   .subscribe(
+    //     data => {
+    //       this.data = data;
+    //     },
 
+    //     error => console.log(error)
+    //   );
   }
   showResult() {
     console.log(
@@ -49,7 +55,7 @@ export class RolelistComponent implements OnInit {
         console.log("Role found:" + role),
         this.router.navigate([
           "editrole",
-          id],{queryParams:{name:role.name},skipLocationChange:true}),
+          id],{queryParams:{name:role.name}}),
       err => console.log(err);
     });
    

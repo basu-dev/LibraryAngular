@@ -26,7 +26,7 @@
     "@ngrx/store-devtools": "^8.6.0",
     "bootstrap": "^4.4.1",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "jwt-parser": "^2.0.0",
     "rxjs": "~6.5.4",
